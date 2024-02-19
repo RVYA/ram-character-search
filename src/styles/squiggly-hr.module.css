@@ -1,6 +1,12 @@
-canvas.squigglyHR {
-  --squiggly-hr-height: 200px;
+hr.squigglyHR {
+  /*min height should be SVG file height + 1px, otherwise it cuts the image.*/
+  --squiggly-hr-height: 15px;
+  /* SVG height is 14px*/
 
-  width: 100%;
   height: var(--squiggly-hr-height);
+  width: 100%;
+  color: transparent;
+  background: var(--color-gradient-ram);
+  mask-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAuMDAwMDA0IiBoZWlnaHQ9IjEzIiBmaWxsPSJub25lIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA0MC4wMDAwMDQgMTMiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtOTguODY5NjQ3LDMxLjIyMDc0MikiPgogIDxwYXRoIGQ9Im0xMDguODY5NjUtMzEuMjIwNzQyYy0zLjQ0OTkzIDAtNi44MDQzNyAxLjU3MzkwNS0xMC4wMDAwMDMgNC40NDUzMTJ2NC4xMDkzNzVjMC4zNTUwNy0wLjMxOTA0MiAwLjcwOTUzLTAuNjQzMTM2IDEuMDYwNTUtMC45OTQxNCAzLjE1NjcyMy0zLjE1NjU3OSA2LjEwNjIyMy00LjU2MDU0NyA4LjkzOTQ1My00LjU2MDU0NyAyLjgzMzI0IDAgNS43ODI3MyAxLjQwMzk2OCA4LjkzOTQ1IDQuNTYwNTQ3IDMuNTEwMjUgMy41MTAwODQgNy4yMjcyOSA1LjQzOTQ1MyAxMS4wNjA1NSA1LjQzOTQ1MyAzLjQ0OTk0IDAgNi44MDQzNy0xLjU3Mzg5NiAxMC00LjQ0NTMxM3YtNC4xMDkzNzVjLTAuMzU1MDYgMC4zMTkwNDEtMC43MDk1MyAwLjY0MzEzOC0xLjA2MDU1IDAuOTk0MTQxLTMuMTU2NzIgMy4xNTY1OTQtNi4xMDYyMiA0LjU2MDU0Ny04LjkzOTQ1IDQuNTYwNTQ3cy01Ljc4MjczLTEuNDAzOTUzLTguOTM5NDUtNC41NjA1NDdjLTMuNTEwMjUtMy41MTAwNy03LjIyNzI5LTUuNDM5NDUzLTExLjA2MDU1LTUuNDM5NDUzeiIgZmlsbD0iIzAwMCIgZmlsbC1ydWxlPSJldmVub2RkIi8+CiA8L2c+Cjwvc3ZnPgo=");
+  mask-repeat: repeat-x;
 }

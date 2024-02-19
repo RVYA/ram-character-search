@@ -5,10 +5,10 @@ interface RickAndMortyLogoProps {}
 export default function RickAndMortyLogo({}: RickAndMortyLogoProps) {
   return (
     <svg
-      className={styles["rick-and-morty-logo"]}
+      className={styles.rickAndMortyLogo}
       /*width="1e3px"
       height="334.36px"*/
-      enable-background="new 0 0 1000 334.36"
+      enableBackground="new 0 0 1000 334.36"
       version="1.1"
       viewBox="0 0 1e3 334.36"
       xmlSpace="preserve"

@@ -1,25 +1,35 @@
-import { ChangeEvent, ReactNode } from "react"
+"use client"
+
+import { Dictionary } from "dictionaries"
+import { ChangeEvent } from "react"
+
+import styles from "styles/search-field.module.css"
 
 interface SearchFieldProps {
+  dictionary: Dictionary
   onChange: (event: ChangeEvent<HTMLInputElement>) => void
-  tags?: ReactNode
 }
 
 const kMinLengthSearch = 3
-const kRegexPatternSearch = / /g // TODO: Write regex
+const kRegexPatternSearch = /^[A-Za-z\-\" ]{3,}$/
 
-export default function SearchField({ onChange, tags }: SearchFieldProps) {
+export default function SearchField({
+  dictionary,
+  onChange,
+}: SearchFieldProps) {
+  const leading = dictionary.searchField.leading
+  const placeholder = dictionary.searchField.placeholder
+
   return (
-    <label>
-      MISSING_LABEL
-      <span>{tags}</span>
+    <label className={styles.searchFieldLabel}>
+      {leading}
       <input
+        className={styles.searchField}
         type="text"
         onChange={onChange}
-        placeholder={"MISSING_PLACEHOLDER"}
+        placeholder={placeholder}
         minLength={kMinLengthSearch}
         pattern={kRegexPatternSearch.source}
-        title="MISSING_TITLE"
       />
     </label>
   )

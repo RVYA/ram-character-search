@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+  /* #region Colors */
+  --color-black: #000000;
+  --color-white: #ffffff;
+
+  --color-rick-blue: #aad3ea;
+  --color-morty-yellow: #f9f769;
+  --color-beth-red: #ff6e7e;
+  --color-jerry-green: #7a8f53;
+  --color-summer-purple: #ff8de7;
+
+  --color-gradient-ram: linear-gradient(to right,
+      var(--color-rick-blue) 0%,
+      var(--color-morty-yellow) 25%,
+      var(--color-beth-red) 50%,
+      var(--color-jerry-green) 75%,
+      var(--color-summer-purple) 100%);
+  /* #endregion */
+
+
+  /* #region Layout */
+  /* #region Space */
+  --space-x0: 0px;
+  --space-x1: 4px;
+  --space-x2: 8px;
+  --space-x3: 12px;
+  --space-x4: 16px;
+  --space-x5: 20px;
+  --space-x6: 24px;
+  --space-x7: 28px;
+  --space-x8: 32px;
+  --space-x9: 36px;
+  --space-x10: 40px;
+  --space-x11: 44px;
+  --space-x12: 48px;
+  /* #endregion */
+
+  /* #region Border*/
+  --border-w-1: 1px;
+  --border-w-6: 6px;
+  /* #endregion */
+
+  /* #region Other constants*/
+  --height-ram-logo: calc(135 * var(--root-type-scale));
+  /* #endregion */
+  /* #endregion */
+
+  /* #region Font */
+  --font-fredoka: "Fredoka", ui-sans, sans;
+  --font-poppins: "Poppins", ui-sans, sans;
+
+  /* To enable better typescaling, a small hack to use in calculations. */
+  --root-type-scale: calc(1rem / 16);
+
+  /* font: -style | -variant | -weight | -size(m) | line-height | -family(m) */
+  --font-display: 600 calc(64 * var(--root-type-scale)) var(--font-fredoka);
+  --font-title: 600 calc(24 * var(--root-type-scale)) calc(32 * var(--root-type-scale)) var(--font-fredoka);
+  --font-label: 700 calc(14 * var(--root-type-scale)) var(--font-poppins);
+  /* #endregion */
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+
+  color-scheme: dark;
+}
+
+body {
+  min-height: 100%;
+  overflow-x: hidden;
+
+  color: var(--color-white);
+  background-color: var(--color-black);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

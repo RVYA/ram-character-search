@@ -1,1 +1,6 @@
-{}
+{
+  "searchField": {
+    "leading": "Search for",
+    "placeholder": "a RaM character"
+  }
+}
