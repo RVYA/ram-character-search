@@ -1,3 +1,4 @@
+import CharChipContainer from "components/char-chip-container"
 import RickAndMortyLogo from "components/rick-and-morty-logo"
 import SearchField from "components/search-field"
 import SquigglyHR from "components/squiggly-hr"
@@ -16,8 +17,28 @@ export default async function Home({ params }: HomeProps) {
   return (
     <>
       <RickAndMortyLogo />
-      <SearchField dictionary={dict} onChange={() => {}} />
+      <SearchField dictionary={dict} /*onChange={() => {}}*/ />
       <SquigglyHR />
+      <CharChipContainer
+        dictionary={dict}
+        characters={[
+          "Rick Sanchez",
+          "Fascist Shrimp Rick",
+          "Vampire Master",
+          "Mr. Celery & Friends",
+          "Plane Crash Survivor",
+          "Eli's Girlfriend",
+          "Gear Cop",
+          "Concerto",
+          "Nano Doctor",
+          "Diane Sanchez",
+          "Jamey",
+          "Big Boobed Waitress",
+          "Tony",
+          "Melissa",
+          "Bootleg Portal Chemist Rick",
+        ]}
+      />
     </>
   )
 }

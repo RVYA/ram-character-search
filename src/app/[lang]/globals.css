@@ -4,6 +4,8 @@
 :root {
   /* #region Colors */
   --color-black: #000000;
+  --color-gray-dark: #141414;
+  --color-gray-light: #292929;
   --color-white: #ffffff;
 
   --color-rick-blue: #aad3ea;
@@ -40,7 +42,10 @@
 
   /* #region Border*/
   --border-w-1: 1px;
+  --border-w-3: 3px;
   --border-w-6: 6px;
+
+  --border-radius-capsule: 1000px;
   /* #endregion */
 
   /* #region Other constants*/
@@ -59,6 +64,7 @@
   --font-display: 600 calc(64 * var(--root-type-scale)) var(--font-fredoka);
   --font-title: 600 calc(24 * var(--root-type-scale)) calc(32 * var(--root-type-scale)) var(--font-fredoka);
   --font-label: 700 calc(14 * var(--root-type-scale)) var(--font-poppins);
+  --font-label-italic: italic 500 calc(16 * var(--root-type-scale)) var(--font-poppins);
   /* #endregion */
 }
 

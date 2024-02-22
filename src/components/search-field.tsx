@@ -7,7 +7,7 @@ import styles from "styles/search-field.module.css"
 
 interface SearchFieldProps {
   dictionary: Dictionary
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
 const kMinLengthSearch = 3

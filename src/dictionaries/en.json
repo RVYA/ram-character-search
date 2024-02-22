@@ -2,5 +2,8 @@
   "searchField": {
     "leading": "Search for",
     "placeholder": "a RaM character"
+  },
+  "charChipContainer": {
+    "leading": "Selected"
   }
 }

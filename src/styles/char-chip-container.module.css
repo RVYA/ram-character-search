@@ -1,0 +1,16 @@
+div.charChipContainer {
+  width: 100%;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-x2);
+
+  padding: var(--space-x4) var(--space-x10);
+}
+
+p.selectedLabel {
+  color: var(--color-white);
+  font: var(--font-label-italic);
+}

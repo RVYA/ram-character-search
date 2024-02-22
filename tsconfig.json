@@ -21,8 +21,9 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "app/*": ["src/app/*"],
+      "app/*": ["src/app/[lang]/*"],
       "components/*": ["src/components/*"],
+      "dictionaries": ["src/dictionaries"],
       "models/*": ["src/models/*"],
       "styles/*": ["src/styles/*"],
       "utils/*": ["src/utils/*"]
