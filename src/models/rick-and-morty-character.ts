@@ -1,28 +1,16 @@
 import { APIReference } from "./api-reference"
 
-export enum CharacterStatus {
-  Alive = "Alive",
-  Dead = "Dead",
-  Unknown = "unknown",
-}
-
-export enum CharacterGender {
-  Female = "Female",
-  Male = "Male",
-  Genderless = "Genderless",
-  Unknown = "unknown",
-}
-
 export interface RickAndMortyCharacter {
   id: number
   name: string
-  status: CharacterStatus
+  status: string
   species: string
   type: string
-  gender: CharacterGender
+  gender: string
   origin: APIReference
   location: APIReference
   image: string
   episode: string[]
+  url: string
   created: string
 }

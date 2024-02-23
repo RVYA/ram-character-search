@@ -5,7 +5,8 @@
   /* #region Colors */
   --color-black: #000000;
   --color-gray-dark: #141414;
-  --color-gray-light: #292929;
+  --color-gray-mid: #292929;
+  --color-gray-light: #626262;
   --color-white: #ffffff;
 
   --color-rick-blue: #aad3ea;
@@ -46,10 +47,13 @@
   --border-w-6: 6px;
 
   --border-radius-capsule: 1000px;
+  --border-radius-l-container: 24px;
   /* #endregion */
 
   /* #region Other constants*/
-  --height-ram-logo: calc(135 * var(--root-type-scale));
+  --height-ram-logo: 135px;
+  /*calc(135 * var(--root-type-scale));*/
+  --height-img-api: 300px;
   /* #endregion */
   /* #endregion */
 

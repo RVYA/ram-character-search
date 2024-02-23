@@ -1,0 +1,46 @@
+div.charCardContainer {
+  color: var(--color-white);
+
+  background-color: transparent;
+  border: var(--border-w-3) solid var(--color-white);
+  border-radius: var(--border-radius-l-container);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-x3);
+
+  padding: var(--space-x5) var(--space-x6);
+
+  /* TODO: Add hover effect that fills the background. */
+}
+
+div.charCardHeader {
+  display: flex;
+  gap: var(--space-x4);
+}
+
+a.charNameAnchor {
+  font: var(--font-title);
+
+  &:hover,
+  &:active {
+    text-decoration: underline;
+  }
+}
+
+div.charCardRow {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+p.charCardLabel {
+  color: var(--color-gray-light);
+  font: var(--font-title);
+}
+
+p.charCardValue {
+  color: var(--color-white);
+  font: var(--font-title);
+}

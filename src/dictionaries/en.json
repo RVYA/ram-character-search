@@ -5,5 +5,18 @@
   },
   "charChipContainer": {
     "leading": "Selected"
+  },
+  "charCard": {
+    "labels": {
+      "episode": "Episodes",
+      "status": "Status",
+      "species": "Species",
+      "gender": "Gender",
+      "origin": "Origin",
+      "location": "Location"
+    },
+  },
+  "charImg": {
+    "altPrefix": "Image of the Rick and Morty character"
   }
 }

@@ -1,5 +1,7 @@
 import styles from "styles/char-chip.module.scss"
 
+import getThemeStyleFrom from "utils/get-theme-style-from"
+
 function _CancelIcon() {
   return (
     <svg
@@ -18,24 +20,8 @@ interface CharChipProps {
   index?: number
 }
 
-const kCountThemeColors = 5
-const kCharThemes = [
-  styles.rickBlue,
-  styles.mortyYellow,
-  styles.summerPurple,
-  styles.bethRed,
-  styles.jeffGreen,
-]
-
 export default function CharChip({ name, index }: CharChipProps) {
-  let themeIndex: number
-  if (index !== undefined) {
-    themeIndex = index % kCountThemeColors
-  } else {
-    themeIndex = Math.floor(Math.random() * (kCountThemeColors - 1))
-  }
-
-  const atrClass = `${styles.charChip} ${kCharThemes[themeIndex]}`
+  const atrClass = `${styles.charChip} ${getThemeStyleFrom(index)}`
 
   return (
     <button className={atrClass} type="button">
