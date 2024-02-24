@@ -1,13 +1,11 @@
-svg.trailingCancelIcon {
-  fill: var(--color-white);
-}
-
 button.charChip {
-  color: var(--color-white);
+  /*color: var(--color-white);*/
   font: var(--font-label);
 
   background-color: transparent;
-  border: var(--border-w-3) solid var(--color-white);
+  /*border: var(--border-w-3) solid var(--color-white);*/
+  border-width: var(--border-w-3);
+  border-style: solid;
   border-radius: var(--border-radius-capsule);
 
   display: flex;
@@ -15,7 +13,7 @@ button.charChip {
   align-items: center;
   gap: var(--space-x2);
 
-  padding: var(--space-x2) var(--space-x2) var(--space-x2) var(--space-x4);
+  padding: var(--space-x1) var(--space-x2) var(--space-x1) var(--space-x4);
 
   &:hover {
     background-color: var(--color-gray-dark);

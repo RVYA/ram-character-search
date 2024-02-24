@@ -1,5 +1,9 @@
 img.charImg {
-  width: var(--height-img-api);
-  height: var(--height-img-api);
+  width: 100%;
+  /*var(--height-img-char);*/
+  height: auto;
+  /*var(--height-img-char);*/
   object-fit: cover;
+
+  border-radius: var(--border-radius-small);
 }

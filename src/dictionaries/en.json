@@ -14,7 +14,7 @@
       "gender": "Gender",
       "origin": "Origin",
       "location": "Location"
-    },
+    }
   },
   "charImg": {
     "altPrefix": "Image of the Rick and Morty character"

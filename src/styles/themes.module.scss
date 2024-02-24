@@ -1,8 +1,12 @@
+svg.themedIcon {
+  fill: var(--color-white);
+}
+
 .rickBlue {
   color: var(--color-rick-blue);
   border-color: var(--color-rick-blue);
 
-  &>svg {
+  & > svg.themedIcon {
     fill: var(--color-rick-blue);
   }
 }
@@ -11,7 +15,7 @@
   color: var(--color-morty-yellow);
   border-color: var(--color-morty-yellow);
 
-  &>svg {
+  & > svg.themedIcon {
     fill: var(--color-morty-yellow);
   }
 }
@@ -20,7 +24,7 @@
   color: var(--color-summer-purple);
   border-color: var(--color-summer-purple);
 
-  &>svg {
+  & > svg.themedIcon {
     fill: var(--color-summer-purple);
   }
 }
@@ -29,7 +33,7 @@
   color: var(--color-beth-red);
   border-color: var(--color-beth-red);
 
-  &>svg {
+  & > svg.themedIcon {
     fill: var(--color-beth-red);
   }
 }
@@ -38,7 +42,7 @@
   color: var(--color-jerry-green);
   border-color: var(--color-jerry-green);
 
-  &>svg {
+  & > svg.themedIcon {
     fill: var(--color-jerry-green);
   }
 }

@@ -1,7 +1,8 @@
 "use client"
 
-import { Dictionary } from "dictionaries"
 import { ChangeEvent } from "react"
+
+import { Dictionary } from "dictionaries"
 
 import styles from "styles/search-field.module.css"
 
@@ -11,7 +12,7 @@ interface SearchFieldProps {
 }
 
 const kMinLengthSearch = 3
-const kRegexPatternSearch = /^[A-Za-z\-\" ]{3,}$/
+const kRegexPatternSearch = /^[A-Za-z\-\"\. ]{3,}$/
 
 export default function SearchField({
   dictionary,

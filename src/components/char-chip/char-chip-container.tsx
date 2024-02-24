@@ -2,7 +2,7 @@ import { Dictionary } from "dictionaries"
 
 import CharChip from "./char-chip"
 
-import styles from "styles/char-chip-container.module.css"
+import styles from "styles/char-chip/char-chip-container.module.css"
 
 interface CharChipContainerProps {
   characters: string[]

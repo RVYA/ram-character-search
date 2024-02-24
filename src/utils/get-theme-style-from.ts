@@ -1,4 +1,4 @@
-import themedContStyles from "styles/themed-container.module.css"
+import themedContStyles from "styles/themes.module.scss"
 
 const kCountThemeColors = 5
 const kCharThemes = [

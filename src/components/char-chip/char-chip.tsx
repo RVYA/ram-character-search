@@ -1,4 +1,5 @@
-import styles from "styles/char-chip.module.scss"
+import styles from "styles/char-chip/char-chip.module.scss"
+import themeStyles from "styles/themes.module.scss"
 
 import getThemeStyleFrom from "utils/get-theme-style-from"
 
@@ -6,7 +7,7 @@ function _CancelIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className={styles.trailingCancelIcon}
+      className={themeStyles.themedIcon}
       height="24"
       viewBox="0 -960 960 960"
       width="24">

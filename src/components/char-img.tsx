@@ -8,7 +8,7 @@ interface CharImgProps {
   url: string
 }
 
-const kSizeImage = 300 // Images from the API are 300x300px
+const kSizeImage = 200 // Images from the API are 300x300px
 
 export default function CharImg({ dictionary, name, url }: CharImgProps) {
   const alt = dictionary.charImg.altPrefix + ` ${name}`
