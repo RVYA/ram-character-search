@@ -2,24 +2,41 @@ import { Dictionary } from "dictionaries"
 
 import styles from "styles/char-img.module.css"
 
+// Images from API are 300x300px.
+export enum CharImgSize {
+  Large = 200,
+  Small = 64,
+}
+
 interface CharImgProps {
   dictionary: Dictionary
   name: string
+  size?: CharImgSize
   url: string
 }
 
-const kSizeImage = 200 // Images from the API are 300x300px
+export default function CharImg({
+  dictionary,
+  name,
+  size = CharImgSize.Large,
+  url,
+}: CharImgProps) {
+  let atrClass = styles.charImg
+  if (size === CharImgSize.Small) {
+    atrClass += ` ${styles.small}`
+  }
 
-export default function CharImg({ dictionary, name, url }: CharImgProps) {
-  const alt = dictionary.charImg.altPrefix + ` ${name}`
+  const alt = dictionary.charImg.altText.leading + ` ${name}`
 
+  // TODO: Look at using Next/Image instead of <img> element.
   return (
+    // eslint-disable-next-line @next/next/no-img-element
     <img
-      className={styles.charImg}
+      className={atrClass}
       src={url}
       alt={alt}
-      width={kSizeImage}
-      height={kSizeImage}
+      width={size}
+      height={size}
       crossOrigin="anonymous"
     />
   )

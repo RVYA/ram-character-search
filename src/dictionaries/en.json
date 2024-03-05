@@ -1,8 +1,4 @@
 {
-  "searchField": {
-    "leading": "Search for",
-    "placeholder": "a RaM character"
-  },
   "charChipContainer": {
     "leading": "Selected"
   },
@@ -17,6 +13,17 @@
     }
   },
   "charImg": {
-    "altPrefix": "Image of the Rick and Morty character"
+    "altText": {
+      "leading": "Image of the Rick and Morty character"
+    }
+  },
+  "searchField": {
+    "leading": "Search for",
+    "placeholder": "a RaM character"
+  },
+  "selectableCharPreview": {
+    "textEpisodes": {
+      "trailing": "episodes"
+    }
   }
 }

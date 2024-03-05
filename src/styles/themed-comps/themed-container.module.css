@@ -1,0 +1,7 @@
+div.large {
+  border-radius: var(--border-radius-large);
+}
+
+div.small {
+  border-radius: var(--border-radius-small);
+}

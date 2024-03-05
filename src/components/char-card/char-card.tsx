@@ -3,8 +3,8 @@ import { RickAndMortyCharacter } from "models/rick-and-morty-character"
 import CharImg from "../char-img"
 
 import styles from "styles/char-card/char-card.module.scss"
-import themeStyles from "styles/themes.module.scss"
-import getThemeStyleFrom from "utils/get-theme-style-from"
+import themeStyles from "styles/ram-theme-colors.module.scss"
+import getColorThemeFrom from "utils/get-theme-for"
 
 import { Dictionary } from "dictionaries"
 
@@ -42,7 +42,8 @@ function _ArrowOutwardIcon() {
       className={themeStyles.themedIcon}
       height="24"
       viewBox="0 -960 960 960"
-      width="24">
+      width="24"
+    >
       <path d="m256-240-56-56 384-384H240v-80h480v480h-80v-344L256-240Z" />
     </svg>
   )
@@ -61,7 +62,7 @@ export default function CharCard({
   dictionary,
   index,
 }: CharCardProps) {
-  const themeClass = getThemeStyleFrom(index)
+  const themeClass = getColorThemeFrom(index)
   const atrClassCont = `${styles.charCardContainer} ${themeClass}`
   const atrNameAnchor = `${styles.charNameAnchor} ${themeClass}`
 

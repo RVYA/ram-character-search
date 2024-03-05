@@ -6,14 +6,23 @@ label.searchFieldLabel {
   align-items: flex-start;
   column-gap: var(--space-x4);
 
-  padding: var(--space-x4);
+  padding: var(--space-x4) var(--space-x12);
 
   font: var(--font-display);
   color: var(--color-white);
 }
 
-input.searchField {
+div.searchContainer {
+  position: relative;
   flex: 3;
+}
+
+input.searchField {
+  position: relative;
+  z-index: var(--z-index-search-overlay);
+
+  width: 100%;
+  /*flex: 3;*/
 
   font: var(--font-display);
 

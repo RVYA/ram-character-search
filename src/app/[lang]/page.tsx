@@ -27,7 +27,7 @@ export default async function Home({ params }: HomeProps) {
     name: "PLACEHOLDER",
     origin: { name: "PLACEHOLDER", url: "PLACEHOLDER" },
     species: "PLACEHOLDER",
-    status: "PLACEHOLDER",
+    status: "ALIVE",
     type: "PLACEHOLDER",
     url: "PLACEHOLDER",
   }

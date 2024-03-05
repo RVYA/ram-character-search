@@ -1,0 +1,56 @@
+input.charSelector {
+  appearance: none;
+  /* Setting `height` and `width` directly may not work accross browsers. */
+  height: var(--height-checkbox-custom);
+  width: var(--height-checkbox-custom);
+
+  background-color: transparent;
+
+  border-width: var(--border-w-3);
+  /* TODO: Define custom dashed border to better reflect the design. */
+  border-style: dashed;
+  border-radius: var(--border-radius-capsule);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-white); /*var(--color-gray-dark);*/
+  }
+
+  &::before {
+    /* Content defined as an inline SVG (a base64 URI at that) can't be colored
+      using CSS. It is a lot better to use it as a mask. */
+    /*content: url("data: image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgLTk2MCA5NjAgOTYwIiB3aWR0aD0iMjQiPjxwYXRoIGQ9Im00MDAtNDM0LjY1MyAyMjYuOTU2LTIyNi45NTZxMTUuNTIyLTE1LjUyMiAzNy4wNDQtMTUuNTIydDM3LjA0NCAxNS41MjJxMTUuNTIyIDE1LjUyMiAxNS41MjIgMzcuMzI2IDAgMjEuODA1LTE1LjUyMiAzNy4zMjdsLTI2My40MzUgMjY0UTQyMS42NTItMzA2Ljk5OSA0MDAtMzA2Ljk5OXQtMzcuNjA5LTE1Ljk1N2wtMTA0LTEwNHEtMTUuNTIyLTE1LjUyMi0xNS4yNC0zNy4zMjcuMjgzLTIxLjgwNCAxNS44MDUtMzcuMzI2IDE1LjUyMi0xNS41MjIgMzcuMzI3LTE1LjUyMiAyMS44MDQgMCAzNy4zMjYgMTUuNTIyTDQwMC00MzQuNjUzWiIvPjwvc3ZnPg==");*/
+
+    /* Default value for `display` attribute for the `::before` pseudo-element
+      is `inline`, which doesn't generate a box for the content. Because of
+      this, the elements width and height is essentially zero. To solve this,
+      `display` can be set either to `inline-block` or `block`. */
+    display: inline-block;
+
+    width: 100%;
+    height: 100%;
+
+    content: "";
+
+    mask-image: url("data: image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgLTk2MCA5NjAgOTYwIiB3aWR0aD0iMjQiPjxwYXRoIGQ9Im00MDAtNDM0LjY1MyAyMjYuOTU2LTIyNi45NTZxMTUuNTIyLTE1LjUyMiAzNy4wNDQtMTUuNTIydDM3LjA0NCAxNS41MjJxMTUuNTIyIDE1LjUyMiAxNS41MjIgMzcuMzI2IDAgMjEuODA1LTE1LjUyMiAzNy4zMjdsLTI2My40MzUgMjY0UTQyMS42NTItMzA2Ljk5OSA0MDAtMzA2Ljk5OXQtMzcuNjA5LTE1Ljk1N2wtMTA0LTEwNHEtMTUuNTIyLTE1LjUyMi0xNS4yNC0zNy4zMjcuMjgzLTIxLjgwNCAxNS44MDUtMzcuMzI2IDE1LjUyMi0xNS41MjIgMzcuMzI3LTE1LjUyMiAyMS44MDQgMCAzNy4zMjYgMTUuNTIyTDQwMC00MzQuNjUzWiIvPjwvc3ZnPg==");
+    mask-size: cover;
+    mask-repeat: no-repeat;
+
+    /* So it doesn't appear before checking. */
+    visibility: hidden;
+  }
+
+  &:checked {
+    border: none;
+    background-color: var(--color-black);
+  }
+
+  &:checked:hover {
+    background-color: var(--color-gray-light);
+  }
+
+  &:checked::before {
+    /* Use `visibility` instead of `display` to avoid recalculating layout */
+    visibility: visible;
+  }
+}

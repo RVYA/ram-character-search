@@ -8,7 +8,7 @@
   --color-gray-mid: #292929;
   --color-gray-light: #626262;
   --color-white: #ffffff;
-
+  /* FIXME: Theme colors may need tweaking. More pastel tones may be required. */
   --color-rick-blue: #aad3ea;
   --color-morty-yellow: #f9f769;
   --color-beth-red: #ff6e7e;
@@ -51,10 +51,15 @@
   --border-radius-large: 24px;
   /* #endregion */
 
-  /* #region Other constants*/
+  /* #region Constants*/
   --height-ram-logo: 135px;
-  /*calc(135 * var(--root-type-scale));*/
-  --height-img-char: 200px;
+  --height-img-char-l: 200px;
+  --height-img-char-s: 64px;
+  --height-checkbox-custom: calc(24 * var(--root-type-scale));
+  /* #endregion */
+
+  /* #region Positioning */
+  --z-index-search-overlay: 100;
   /* #endregion */
   /* #endregion */
 
@@ -68,6 +73,7 @@
   /* font: -style | -variant | -weight | -size(m) | line-height | -family(m) */
   --font-display: 600 calc(64 * var(--root-type-scale)) var(--font-fredoka);
   --font-title: 600 calc(24 * var(--root-type-scale))/calc(32 * var(--root-type-scale)) var(--font-fredoka);
+  --font-title-reg: 400 calc(24 * var(--root-type-scale))/calc(32 * var(--root-type-scale)) var(--font-fredoka);
   --font-label: 700 calc(14 * var(--root-type-scale)) var(--font-poppins);
   --font-label-italic: italic 500 calc(16 * var(--root-type-scale)) var(--font-poppins);
   /* #endregion */
