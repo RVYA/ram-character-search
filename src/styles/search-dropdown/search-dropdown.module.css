@@ -31,4 +31,12 @@ div.searchDropdown {
   gap: var(--space-x3);
 
   padding: var(--space-x3) var(--space-x3);
+
+  /* This `scrollbar-*` attributes aren't widely supported by browsers. */
+  scrollbar-color: transparent transparent;
+  scrollbar-width: thin;
+
+  &.hidden {
+    visibility: hidden;
+  }
 }

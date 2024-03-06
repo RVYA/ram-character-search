@@ -27,7 +27,7 @@ interface SelectableCharPreviewProps {
   searchText?: string
 }
 
-function getQueryMatchRegExp(searchText: string) {
+export function getQueryMatchRegExp(searchText: string) {
   /** The query:
    * Query uses capturing group to also return matching parts in results.
    * However, it results in an empty string to be added to the beginning or end

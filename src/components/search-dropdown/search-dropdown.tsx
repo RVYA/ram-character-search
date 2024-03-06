@@ -1,4 +1,6 @@
-import SelectableCharPreview from "./selectable-char-preview"
+import SelectableCharPreview, {
+  getQueryMatchRegExp,
+} from "./selectable-char-preview"
 
 import { RickAndMortyCharacter } from "models/rick-and-morty-character"
 
@@ -8,28 +10,39 @@ import styles from "styles/search-dropdown/search-dropdown.module.css"
 
 interface SearchDropdownProps {
   dictionary: Dictionary
-  results: RickAndMortyCharacter[]
+  isOpen: boolean
+  characters: RickAndMortyCharacter[]
   searchText?: string
   selectedCharacterIds?: number[]
   onCharSelect?: (selectedCharId: string) => void
   onCharDiscard?: (discardedCharId: string) => void
 }
-// TODO: Define custom scrollbar in related CSS module.
-// TODO: Make the dropdown hideable. Only show dropdown when search field is in
-// focus.
+
 // TODO: Position dropdown in the center horizontally.
-// TODO: Add some top margin to dropdown
 export default function SearchDropdown({
   dictionary,
-  results,
+  isOpen,
+  characters,
   searchText,
   selectedCharacterIds,
   onCharSelect,
   onCharDiscard,
 }: SearchDropdownProps) {
+  let atrClass = styles.searchDropdown
+  if (!isOpen) atrClass += ` ${styles.hidden}`
+
+  let charsToShow: RickAndMortyCharacter[]
+  if (searchText === undefined || searchText.length <= 0) {
+    charsToShow = characters
+  } else {
+    // FIXME: Test and implement a proper search regex.
+    const queryRegex = getQueryMatchRegExp(searchText)
+    charsToShow = characters.filter((char) => queryRegex.test(char.name))
+  }
+
   return (
-    <div className={styles.searchDropdown}>
-      {results.map((char, index) => (
+    <div className={atrClass}>
+      {charsToShow.map((char, index) => (
         <SelectableCharPreview
           key={`char_prev_${char.id}_${index}`}
           id={char.id.toString()}
