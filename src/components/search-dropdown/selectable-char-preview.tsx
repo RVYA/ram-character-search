@@ -3,6 +3,7 @@
 import { ChangeEvent, useMemo, useState } from "react"
 
 import CharImg, { CharImgSize } from "components/char-img"
+import { getQueryMatchRegExp } from "components/search-field"
 import RaMThemedContainer, {
   RaMThemedContainerSize,
 } from "components/themed-comps/themed-container"
@@ -27,26 +28,11 @@ interface SelectableCharPreviewProps {
   searchText?: string
 }
 
-export function getQueryMatchRegExp(searchText: string) {
-  /** The query:
-   * Query uses capturing group to also return matching parts in results.
-   * However, it results in an empty string to be added to the beginning or end
-   * of the array when the match is at the beginning or end or string.
-   * */
-
-  /** Flags:
-   * `g`: global; searches for more multiple matches
-   * `i`: case insensitive: ignores the case of the text (doesn't work for
-   * non-US characters though; i.e, the Turkish letter `İ`, doesn't match for
-   * `i` or `I`)
-   */
-  return new RegExp(`(${searchText})`, "gi")
-}
-
 // TODO: Add dictionary entries for status values. Make a constants dictionary.
 // TODO: Remove optional parameters for event handlers.
 // TODO: Separate status and episode count label styles
 // TODO: Rework gray colors for unimportant text and labels
+// FIXME: The details container is not centered
 export default function SelectableCharPreview({
   dictionary,
   episodeCount,

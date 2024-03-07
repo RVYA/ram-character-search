@@ -37,6 +37,9 @@ div.searchDropdown {
   scrollbar-width: thin;
 
   &.hidden {
-    visibility: hidden;
+    /* When the element is only `hidden`, the ::before element on CharSelector
+    stays visible on screen. */
+    /*visibility: hidden;*/
+    display: none;
   }
 }

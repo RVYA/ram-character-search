@@ -17,6 +17,7 @@ interface HomeProps {
 export default async function Home({ params }: HomeProps) {
   const dict = await getDictionary(params.lang)
 
+  // #region Placeholder data | REMOVE
   const placeholderChar: RickAndMortyCharacter = {
     created: "PLACEHOLDER",
     episode: ["PLACEHOLDER"],
@@ -24,10 +25,10 @@ export default async function Home({ params }: HomeProps) {
     id: -1,
     image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
     location: { name: "PLACEHOLDER", url: "PLACEHOLDER" },
-    name: "PLACEHOLDER",
+    name: "Rick Sanchez",
     origin: { name: "PLACEHOLDER", url: "PLACEHOLDER" },
     species: "PLACEHOLDER",
-    status: "ALIVE",
+    status: "Alive",
     type: "PLACEHOLDER",
     url: "PLACEHOLDER",
   }
@@ -48,11 +49,15 @@ export default async function Home({ params }: HomeProps) {
     placeholderChar,
     placeholderChar,
   ]
+  // #endregion
 
   return (
     <>
       <RickAndMortyLogo />
-      <SearchField dictionary={dict} /*onChange={() => {}}*/ />
+      <SearchField
+        characters={chars}
+        dictionary={dict} /*onChange={() => {}}*/
+      />
       <SquigglyHR />
       <CharChipContainer
         dictionary={dict}
