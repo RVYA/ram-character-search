@@ -6,7 +6,7 @@ import CharImg, { CharImgSize } from "components/char-img"
 import { getQueryMatchRegExp } from "components/search-field"
 import RaMThemedContainer, {
   RaMThemedContainerSize,
-} from "components/themed-comps/themed-container"
+} from "components/themed-container"
 import CharSelector from "./char-selector"
 
 import { Dictionary } from "dictionaries"

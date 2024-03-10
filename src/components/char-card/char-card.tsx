@@ -3,7 +3,10 @@ import CharImg from "../char-img"
 import { RickAndMortyCharacter } from "models/rick-and-morty-character"
 
 import styles from "styles/char-card/char-card.module.scss"
-import getColorThemeFrom from "utils/get-theme-for"
+import getColorThemeFrom, {
+  ThemedContainerType,
+  getContainerThemeFor,
+} from "utils/get-theme-for"
 
 import { Dictionary } from "dictionaries"
 
@@ -61,14 +64,19 @@ interface CharCardProps {
   index: number
 }
 
-// TODO: Add color fill on hover to both CharCard and CharChip
+// TODO: Add color fill on hover to both CharCard
 export default function CharCard({
   character,
   dictionary,
   index,
 }: CharCardProps) {
+  const contThemeClass = getContainerThemeFor(
+    ThemedContainerType.Outlined,
+    index,
+  )
+  const atrClassCont = `${styles.charCardContainer} ${contThemeClass}`
+
   const themeClass = getColorThemeFrom(index)
-  const atrClassCont = `${styles.charCardContainer} ${themeClass}`
   const atrNameAnchor = `${styles.charNameAnchor} ${themeClass}`
 
   const labelDict = dictionary.charCard.labels

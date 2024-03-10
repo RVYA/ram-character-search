@@ -49,3 +49,7 @@ export function getContainerThemeFor(
 export function getContentThemeFor(index?: number) {
   return `${themeStyles.themedContent} ${getColorThemeFrom(index)}`
 }
+
+export function getHoverThemeFor(index?: number) {
+  return `${themeStyles.hoverFilledThemedContainer} ${getColorThemeFrom(index)}`
+}

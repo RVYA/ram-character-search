@@ -4,6 +4,7 @@ import getColorThemeFrom, {
   ThemedContainerType,
   getContainerThemeFor,
   getContentThemeFor,
+  getHoverThemeFor,
 } from "utils/get-theme-for"
 
 // #region Cancel Icon component
@@ -36,8 +37,9 @@ export default function CharChip({ name, index }: CharChipProps) {
     ThemedContainerType.Outlined,
     index,
   )
+  const hoverThemeClass = getHoverThemeFor(index)
   const textThemeClass = getContentThemeFor(index)
-  const atrClass = `${styles.charChip} ${contThemeClass} ${textThemeClass}`
+  const atrClass = `${styles.charChip} ${contThemeClass} ${hoverThemeClass} ${textThemeClass}`
 
   return (
     <button className={atrClass} type="button">

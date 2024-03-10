@@ -14,7 +14,8 @@ interface RaMThemedContainerProps {
   type?: ThemedContainerType
   size?: RaMThemedContainerSize
 }
-// TODO: Decide how to use themed components for CharChip.
+// FIXME: This component isn't being used in other components that need a themed
+// container.
 export default function RaMThemedContainer({
   children,
   index,

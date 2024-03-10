@@ -15,7 +15,7 @@ svg {
     fill: var(--color-jerry-green);
   }
 }
-/* TODO: Find a way to set ::before pseudo-element */
+
 .filledThemedContainer {
   &.rickBlue {
     background-color: var(--color-rick-blue);
@@ -31,6 +31,35 @@ svg {
   }
   &.jerryGreen {
     background-color: var(--color-jerry-green);
+  }
+}
+
+.hoverFilledThemedContainer:hover {
+  & svg {
+    fill: var(--color-black);
+  }
+  &.rickBlue {
+    color: var(--color-black);
+    background-color: var(--color-rick-blue);
+  }
+  &.mortyYellow {
+    color: var(--color-black);
+    background-color: var(--color-morty-yellow);
+  }
+  &.summerPurple {
+    color: var(--color-black);
+    background-color: var(--color-summer-purple);
+  }
+  &.bethRed {
+    color: var(--color-black);
+    background-color: var(--color-beth-red);
+  }
+  &.jerryGreen {
+    color: var(--color-white);
+    background-color: var(--color-jerry-green);
+    & svg {
+      fill: var(--color-white);
+    }
   }
 }
 
@@ -93,34 +122,29 @@ h3 {
     color: var(--color-jerry-green);
   }
 }
-
+// TODO: Remove hover from input styles
 input {
   &.rickBlue {
-    &:hover,
     &::before {
       background-color: var(--color-rick-blue);
     }
   }
   &.mortyYellow {
-    &:hover,
     &::before {
       background-color: var(--color-morty-yellow);
     }
   }
   &.summerPurple {
-    &:hover,
     &::before {
       background-color: var(--color-summer-purple);
     }
   }
   &.bethRed {
-    &:hover,
     &::before {
       background-color: var(--color-beth-red);
     }
   }
   &.jerryGreen {
-    &:hover,
     &::before {
       background-color: var(--color-jerry-green);
     }
