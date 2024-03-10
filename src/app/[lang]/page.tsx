@@ -48,6 +48,10 @@ export default async function Home({ params }: HomeProps) {
     placeholderChar,
     placeholderChar,
     placeholderChar,
+    placeholderChar,
+    placeholderChar,
+    placeholderChar,
+    placeholderChar,
   ]
   // #endregion
 

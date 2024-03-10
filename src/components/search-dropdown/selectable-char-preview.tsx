@@ -1,6 +1,6 @@
 "use client"
 
-import { ChangeEvent, useMemo, useState } from "react"
+import { ChangeEvent, Fragment, useMemo, useState } from "react"
 
 import CharImg, { CharImgSize } from "components/char-img"
 import { getQueryMatchRegExp } from "components/search-field"
@@ -90,10 +90,13 @@ export default function SelectableCharPreview({
       .split(getQueryMatchRegExp(searchText))
       .filter(Boolean) // The empty string is resolved as falsy in JS
     const markedName = splitName.map((part, index) => {
-      if (part === searchText) {
-        return <b key={index}>{part}</b>
+      // Because regex matches with case insensitive flag applied, the cases of
+      // the letters in `searchText` may not match with `part`, which causes
+      // marking effect to break.
+      if (part.toLowerCase() === searchText.toLowerCase()) {
+        return <b key={`${part}_${index}`}>{part}</b>
       } else {
-        return <>{part}</>
+        return <Fragment key={`${part}_${index}`}>{part}</Fragment>
       }
     })
 

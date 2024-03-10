@@ -20,6 +20,7 @@ export default function getColorThemeFrom(index?: number) {
   return kColorThemes[themeIndex]
 }
 
+// #region Themed Container classes
 export enum ThemedContainerType {
   Filled,
   Outlined,
@@ -42,4 +43,9 @@ export function getContainerThemeFor(
   }
 
   return `${classCont} ${getColorThemeFrom(index)}`
+}
+// #endregion
+
+export function getContentThemeFor(index?: number) {
+  return `${themeStyles.themedContent} ${getColorThemeFrom(index)}`
 }

@@ -12,10 +12,6 @@ input.charSelector {
   border-radius: var(--border-radius-capsule);
   cursor: pointer;
 
-  &:hover {
-    background-color: var(--color-white); /*var(--color-gray-dark);*/
-  }
-
   &::before {
     /* Content defined as an inline SVG (a base64 URI at that) can't be colored
       using CSS. It is a lot better to use it as a mask. */

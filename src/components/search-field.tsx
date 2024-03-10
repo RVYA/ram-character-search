@@ -26,11 +26,6 @@ interface SearchFieldProps {
   selectedCharacterIds?: number[]
 }
 
-// FIXME: Current regex doesn't work when the case doesn't match
-// FIXME: When the letter `I` is written as input, amount of cards displayed
-// will get smaller, and the layout will change to include more space.
-// Investigate.
-// FIXME: Any matching regex returns a smaller amount of results than expected.
 export function getQueryMatchRegExp(searchText: string) {
   /** The query:
    * Query uses capturing group to also return matching parts in results.
@@ -48,12 +43,9 @@ export function getQueryMatchRegExp(searchText: string) {
 }
 
 const kMinLengthSearch = 3
-const kRegexPatternSearch = /^[A-Za-z\-\"\. ]{3,}$/
+const kRegexPatternSearch = /^[A-Za-z\-". ]{3,}$/
 
 // TODO: Rework spacing.
-// FIXME: The focus toggling for visibility of search dropdown doesn't work,
-// because when input on SelectableCharPreview is clicked, the input loses
-// focus.
 // FIXME: The `onfocus` handler on `input` may be redundant.
 export default function SearchField({
   characters,
@@ -109,15 +101,15 @@ export default function SearchField({
 
     const queryRegex = getQueryMatchRegExp(searchText)
     const filteredChars = characters.filter((char) =>
-      queryRegex.test(char.name),
+      char.name.match(queryRegex),
     )
-
-    if (filteredChars.length <= 0) return characters
-    else return filteredChars
+    return filteredChars
   }, [characters, searchText])
 
   const getSearchResults = useCallback(() => {
     const chars = getFilteredCharacters()
+    if (chars.length <= 0) return undefined
+
     return chars.map<SearchResult>((char) => ({
       character: char,
       isSelected: selectedCharacterIds?.includes(char.id) ?? false,

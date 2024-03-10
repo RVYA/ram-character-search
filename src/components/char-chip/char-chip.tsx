@@ -1,13 +1,21 @@
 import styles from "styles/char-chip/char-chip.module.scss"
-import themeStyles from "styles/ram-theme-colors.module.scss"
 
-import getColorThemeFrom from "utils/get-theme-for"
+import getColorThemeFrom, {
+  ThemedContainerType,
+  getContainerThemeFor,
+  getContentThemeFor,
+} from "utils/get-theme-for"
 
-function _CancelIcon() {
+// #region Cancel Icon component
+interface _CancelIconProps {
+  themeClass: string
+}
+
+function _CancelIcon({ themeClass }: _CancelIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className={themeStyles.themedIcon}
+      className={themeClass}
       height="24"
       viewBox="0 -960 960 960"
       width="24"
@@ -16,6 +24,7 @@ function _CancelIcon() {
     </svg>
   )
 }
+// #endregion
 
 interface CharChipProps {
   name: string
@@ -23,12 +32,17 @@ interface CharChipProps {
 }
 
 export default function CharChip({ name, index }: CharChipProps) {
-  const atrClass = `${styles.charChip} ${getColorThemeFrom(index)}`
+  const contThemeClass = getContainerThemeFor(
+    ThemedContainerType.Outlined,
+    index,
+  )
+  const textThemeClass = getContentThemeFor(index)
+  const atrClass = `${styles.charChip} ${contThemeClass} ${textThemeClass}`
 
   return (
     <button className={atrClass} type="button">
       {name}
-      <_CancelIcon />
+      <_CancelIcon themeClass={getColorThemeFrom(index)} />
     </button>
   )
 }

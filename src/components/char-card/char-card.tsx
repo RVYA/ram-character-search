@@ -1,9 +1,8 @@
-import { RickAndMortyCharacter } from "models/rick-and-morty-character"
-
 import CharImg from "../char-img"
 
+import { RickAndMortyCharacter } from "models/rick-and-morty-character"
+
 import styles from "styles/char-card/char-card.module.scss"
-import themeStyles from "styles/ram-theme-colors.module.scss"
 import getColorThemeFrom from "utils/get-theme-for"
 
 import { Dictionary } from "dictionaries"
@@ -35,11 +34,16 @@ function _CharCardRow({ label, value }: _CharCardRowProps) {
 }
 // #endregion
 
-function _ArrowOutwardIcon() {
+// #region Arrow Outward Icon component
+interface _ArrowOutwardIconProps {
+  themeClass: string
+}
+
+function _ArrowOutwardIcon({ themeClass }: _ArrowOutwardIconProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className={themeStyles.themedIcon}
+      className={themeClass}
       height="24"
       viewBox="0 -960 960 960"
       width="24"
@@ -48,6 +52,7 @@ function _ArrowOutwardIcon() {
     </svg>
   )
 }
+// #endregion
 
 // #region Character Card
 interface CharCardProps {
@@ -82,7 +87,7 @@ export default function CharCard({
         />
         <a className={atrNameAnchor} href={getFandomURLFor(character.name)}>
           {character.name}
-          <_ArrowOutwardIcon />
+          <_ArrowOutwardIcon themeClass={getColorThemeFrom(index)} />
         </a>
       </div>
       <_CharCardRow label={labelDict.episode} value={episodeCount} />

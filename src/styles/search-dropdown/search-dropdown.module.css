@@ -11,7 +11,8 @@ div.searchDropdown {
   left: 0;
   right: 0;
 
-  width: min-content;
+  width: 100%;
+  /*min-content;*/
   height: var(--height-dropdown);
 
   overflow-y: scroll;
@@ -27,14 +28,25 @@ div.searchDropdown {
   border-radius: var(--border-radius-large);
 
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-x3);
 
   padding: var(--space-x3) var(--space-x3);
 
   /* This `scrollbar-*` attributes aren't widely supported by browsers. */
-  scrollbar-color: transparent transparent;
+  scrollbar-color: var(--color-rick-blue) transparent;
   scrollbar-width: thin;
+
+  &.empty {
+    height: min-content;
+
+    display: flex;
+    justify-content: center;
+
+    padding: var(--space-x6) var(--space-x12);
+
+    scrollbar-color: transparent transparent;
+  }
 
   &.hidden {
     /* When the element is only `hidden`, the ::before element on CharSelector
@@ -42,4 +54,8 @@ div.searchDropdown {
     /*visibility: hidden;*/
     display: none;
   }
+}
+
+p.noMatchText {
+  font: var(--font-title-reg);
 }
