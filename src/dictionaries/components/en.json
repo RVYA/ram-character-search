@@ -17,13 +17,17 @@
       "leading": "Image of the Rick and Morty character"
     }
   },
+  "searchDropdown": {
+    "textMinInputLengthWarning": "Type at least 3 characters.",
+    "textNoMatch": "No results have been found."
+  },
   "searchField": {
     "leading": "Search for",
     "placeholder": "a RaM character"
   },
   "selectableCharPreview": {
     "textEpisodes": {
-      "trailing": "episodes"
+      "trailing": "eps"
     }
   }
 }

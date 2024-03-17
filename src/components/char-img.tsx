@@ -1,4 +1,4 @@
-import { Dictionary } from "dictionaries"
+import { ComponentDictionary } from "dictionaries"
 
 import styles from "styles/char-img.module.css"
 
@@ -9,7 +9,7 @@ export enum CharImgSize {
 }
 
 interface CharImgProps {
-  dictionary: Dictionary
+  dictionary: ComponentDictionary
   name: string
   size?: CharImgSize
   url: string

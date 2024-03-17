@@ -11,10 +11,12 @@ div.searchDropdown {
   left: 0;
   right: 0;
 
-  width: 100%;
-  /*min-content;*/
-  height: var(--height-dropdown);
 
+  width: 100%;
+  min-height: 0;
+  max-height: var(--height-dropdown);
+
+  overflow-x: hidden;
   overflow-y: scroll;
 
   /* This hack is used to achieve a border with gradient, and due to how CSS
@@ -28,7 +30,11 @@ div.searchDropdown {
   border-radius: var(--border-radius-large);
 
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  /* setting flex to 1fr is same as setting minmax(auto, 1fr); which means the
+  track cannot be smaller than the grid item. when using 0 instead of `auto`,
+  track is free to resize to a 0 width/height.
+  (ref: https: //stackoverflow.com/questions/52861086/why-does-minmax0-1fr-work-for-long-elements-while-1fr-doesnt) */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-x3);
 
   padding: var(--space-x3) var(--space-x3);

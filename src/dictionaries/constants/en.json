@@ -1,0 +1,13 @@
+{
+  "status": {
+    "Alive": "Alive",
+    "Dead": "Dead",
+    "unknown": "Unknown"
+  },
+  "genders": {
+    "Female": "Female",
+    "Male": "Male",
+    "Genderless": "Genderless",
+    "unknown": "Unknown"
+  }
+}

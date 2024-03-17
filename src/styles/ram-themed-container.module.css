@@ -1,0 +1,13 @@
+div.ramThemedContainer {
+  min-width: 0;
+  min-height: 0;
+  height: min-content;
+}
+
+div.large {
+  border-radius: var(--border-radius-large);
+}
+
+div.small {
+  border-radius: var(--border-radius-small);
+}

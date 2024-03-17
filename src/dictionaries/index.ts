@@ -2,20 +2,44 @@
 
 import { i18n, type Locale } from "src/i18n-config"
 
-const dictionaries = {
-  en: () => import("./en.json").then((module) => module.default),
+export enum DictionaryType {
+  Component,
+  Constant,
 }
 
-export type Dictionary = typeof import("./en.json")
+export type ComponentDictionary = typeof import("./components/en.json")
 
-export interface DictionaryProps {
-  dictionary: Dictionary
+const componentDictionaries: {
+  [key in Locale]: () => Promise<ComponentDictionary>
+} = {
+  en: () => import("./components/en.json").then((module) => module.default),
 }
 
-export function getDefaultDictionary() {
-  return dictionaries[i18n.defaultLocale]
+export type ConstantDictionary = typeof import("./constants/en.json")
+
+const constantDictionaries: {
+  [key in Locale]: () => Promise<ConstantDictionary>
+} = {
+  en: () => import("./constants/en.json").then((module) => module.default),
 }
 
-export async function getDictionary(locale: Locale) {
-  return dictionaries[locale]?.() ?? getDefaultDictionary()
+export function getDefaultDictionaryOf(type: DictionaryType) {
+  switch (type) {
+    case DictionaryType.Component:
+      return componentDictionaries[i18n.defaultLocale]
+    case DictionaryType.Constant:
+      return constantDictionaries[i18n.defaultLocale]
+  }
+}
+
+export async function getDictionary(
+  locale: Locale,
+  type: DictionaryType = DictionaryType.Component,
+) {
+  switch (type) {
+    case DictionaryType.Component:
+      return componentDictionaries[locale]()
+    case DictionaryType.Constant:
+      return constantDictionaries[locale]()
+  }
 }

@@ -30,9 +30,10 @@ function _CancelIcon({ themeClass }: _CancelIconProps) {
 interface CharChipProps {
   name: string
   index?: number
+  onClick: () => void
 }
 
-export default function CharChip({ name, index }: CharChipProps) {
+export default function CharChip({ name, index, onClick }: CharChipProps) {
   const contThemeClass = getContainerThemeFor(
     ThemedContainerType.Outlined,
     index,
@@ -42,7 +43,7 @@ export default function CharChip({ name, index }: CharChipProps) {
   const atrClass = `${styles.charChip} ${contThemeClass} ${hoverThemeClass} ${textThemeClass}`
 
   return (
-    <button className={atrClass} type="button">
+    <button className={atrClass} type="button" onClick={onClick}>
       {name}
       <_CancelIcon themeClass={getColorThemeFrom(index)} />
     </button>

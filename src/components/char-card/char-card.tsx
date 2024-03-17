@@ -8,7 +8,7 @@ import getColorThemeFrom, {
   getContainerThemeFor,
 } from "utils/get-theme-for"
 
-import { Dictionary } from "dictionaries"
+import { ComponentDictionary } from "dictionaries"
 
 // #region Generate fandom url for character
 // URL template: https://rickandmorty.fandom.com/wiki/Rick_Sanchez
@@ -60,11 +60,13 @@ function _ArrowOutwardIcon({ themeClass }: _ArrowOutwardIconProps) {
 // #region Character Card
 interface CharCardProps {
   character: RickAndMortyCharacter
-  dictionary: Dictionary
+  dictionary: ComponentDictionary
   index: number
 }
 
-// TODO: Add color fill on hover to both CharCard
+// TODO: Add color fill on hover to CharCard
+// FIXME: When the detail text is too long, it renders at the left,
+// adjacent to label, instead of staying at right-hand side.
 export default function CharCard({
   character,
   dictionary,

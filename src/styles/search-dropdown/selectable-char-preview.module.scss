@@ -1,17 +1,19 @@
 div.previewContainer {
+  width: 100%;
+
   display: flex;
   align-items: flex-start;
   gap: var(--space-x2);
 
+  overflow: hidden;
+
   /* top right bottom left */
   padding: var(--space-x2) var(--space-x4) var(--space-x2) var(--space-x2);
-
-  &.selected {
-    background-color: unset;
-  }
 }
 
 div.charDetailsContainer {
+  min-width: 0;
+  width: 100%;
   height: 100%;
 
   display: flex;
@@ -20,15 +22,11 @@ div.charDetailsContainer {
   gap: var(--space-x1);
 }
 
-div.charIdentityContainer {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-x2);
-}
-
 p.charName {
-  width: max-content;
   font: var(--font-title-reg);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   &.selected {
     color: var(--color-black);

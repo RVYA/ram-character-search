@@ -1,8 +1,10 @@
 input.charSelector {
   appearance: none;
   /* Setting `height` and `width` directly may not work accross browsers. */
-  height: var(--height-checkbox-custom);
+  min-width: var(--height-checkbox-custom);
   width: var(--height-checkbox-custom);
+  min-height: var(--height-checkbox-custom);
+  height: var(--height-checkbox-custom);
 
   background-color: transparent;
 

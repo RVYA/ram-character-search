@@ -4,6 +4,7 @@ import {
   ChangeEvent,
   FocusEvent,
   useCallback,
+  useContext,
   useEffect,
   useRef,
   useState,
@@ -11,48 +12,33 @@ import {
 
 import SearchDropdown, { SearchResult } from "./search-dropdown/search-dropdown"
 
-import { RickAndMortyCharacter } from "models/rick-and-morty-character"
+import { DictionaryContext } from "contexts/dictionary-context-provider"
 
-import { Dictionary } from "dictionaries"
+import { RickAndMortyCharacter } from "models/rick-and-morty-character"
 
 import styles from "styles/search-field.module.css"
 
 interface SearchFieldProps {
-  characters: RickAndMortyCharacter[]
-  dictionary: Dictionary
-  onChange?: (event: ChangeEvent<HTMLInputElement>) => void
-  onCharSelect?: (selectedCharId: string) => void
-  onCharDiscard?: (discardedCharId: string) => void
+  queryResults?: RickAndMortyCharacter[]
+  onCharSelect: (selectedCharId: number) => void
+  onCharDiscard: (discardedCharId: number) => void
+  onQueryChange: (query: string) => void
   selectedCharacterIds?: number[]
 }
 
-export function getQueryMatchRegExp(searchText: string) {
-  /** The query:
-   * Query uses capturing group to also return matching parts in results.
-   * However, it results in an empty string to be added to the beginning or end
-   * of the array when the match is at the beginning or end or string.
-   * */
-
-  /** Flags:
-   * `g`: global; searches for more multiple matches
-   * `i`: case insensitive: ignores the case of the text (doesn't work for
-   * non-US characters though; i.e, the Turkish letter `İ`, doesn't match for
-   * `i` or `I`)
-   */
-  return new RegExp(`(${searchText})`, "gi")
-}
-
-const kMinLengthSearch = 3
+export const kMinLengthSearch = 3
 const kRegexPatternSearch = /^[A-Za-z\-". ]{3,}$/
+const kRegexInputSanitization = /[^A-Za-z\-". ]/g
+
+const kDelayQueryDebounce = 350 //milliseconds
 
 // TODO: Rework spacing.
 // FIXME: The `onfocus` handler on `input` may be redundant.
 export default function SearchField({
-  characters,
-  dictionary,
-  onChange,
   onCharDiscard,
   onCharSelect,
+  onQueryChange,
+  queryResults,
   selectedCharacterIds,
 }: SearchFieldProps) {
   // #region Controlling dropdown visibility
@@ -93,38 +79,41 @@ export default function SearchField({
   // #endregion
 
   const [searchText, setSearchText] = useState<string>()
-  //#region Generating search results
-  const getFilteredCharacters = useCallback(() => {
-    if (searchText === undefined || searchText.length <= 0) {
-      return characters
-    }
+  const debounceTimer = useRef<NodeJS.Timeout>()
 
-    const queryRegex = getQueryMatchRegExp(searchText)
-    const filteredChars = characters.filter((char) =>
-      char.name.match(queryRegex),
-    )
-    return filteredChars
-  }, [characters, searchText])
+  // FIXME: With current implementation, this may cause multiple queries to be
+  // sent.
+  const debounce = useCallback((func: () => void) => {
+    if (debounceTimer.current !== undefined) {
+      clearTimeout(debounceTimer.current)
+    }
+    debounceTimer.current = setTimeout(func, kDelayQueryDebounce)
+  }, [])
 
   const getSearchResults = useCallback(() => {
-    const chars = getFilteredCharacters()
-    if (chars.length <= 0) return undefined
+    if (queryResults === undefined || queryResults.length <= 0) return undefined
 
-    return chars.map<SearchResult>((char) => ({
+    return queryResults.map<SearchResult>((char) => ({
       character: char,
       isSelected: selectedCharacterIds?.includes(char.id) ?? false,
     }))
-  }, [getFilteredCharacters, selectedCharacterIds])
+  }, [queryResults, selectedCharacterIds])
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
-    setSearchText(event.target.value)
+    const query = event.target.value.replace(kRegexInputSanitization, "")
 
-    if (onChange !== undefined) onChange(event)
+    debounce(() => {
+      if (query === searchText) return
+
+      onQueryChange(query)
+      setSearchText(query)
+    })
   }
-  // #endregion
 
-  const leading = dictionary.searchField.leading
-  const placeholder = dictionary.searchField.placeholder
+  const [compDict, constDict] = useContext(DictionaryContext)!
+
+  const leading = compDict.searchField.leading
+  const placeholder = compDict.searchField.placeholder
 
   return (
     <label className={styles.searchFieldLabel}>
@@ -141,7 +130,8 @@ export default function SearchField({
           pattern={kRegexPatternSearch.source}
         />
         <SearchDropdown
-          dictionary={dictionary}
+          componentDictionary={compDict}
+          constantDictionary={constDict}
           isOpen={isDropdownVisible}
           ref={dropdownRef}
           results={getSearchResults()}

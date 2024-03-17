@@ -1,6 +1,6 @@
 import { ReactNode } from "react"
 
-import styles from "styles/themed-comps/themed-container.module.css"
+import styles from "styles/ram-themed-container.module.css"
 import { ThemedContainerType, getContainerThemeFor } from "utils/get-theme-for"
 
 export enum RaMThemedContainerSize {
@@ -34,7 +34,7 @@ export default function RaMThemedContainer({
       break
   }
 
-  const atrClassCont = `${classTheme} ${classSize}`
+  const atrClassCont = `${styles.ramThemedContainer} ${classTheme} ${classSize}`
 
   return <div className={atrClassCont}>{children}</div>
 }

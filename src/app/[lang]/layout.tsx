@@ -2,6 +2,7 @@ import "./globals.css"
 
 import type { Metadata, ResolvingMetadata } from "next"
 
+import DictionaryContextWrapper from "contexts/dictionary-context-wrapper"
 import { getDictionary } from "dictionaries"
 import { Locale, i18n } from "src/i18n-config"
 
@@ -29,7 +30,9 @@ interface RootProps {
 export default function RootLayout({ children, params }: RootProps) {
   return (
     <html lang={params.lang}>
-      <body>{children}</body>
+      <DictionaryContextWrapper lang={params.lang}>
+        <body>{children}</body>
+      </DictionaryContextWrapper>
     </html>
   )
 }

@@ -4,8 +4,9 @@ import SelectableCharPreview from "./selectable-char-preview"
 
 import { RickAndMortyCharacter } from "models/rick-and-morty-character"
 
-import { Dictionary } from "dictionaries"
+import { ComponentDictionary, ConstantDictionary } from "dictionaries"
 
+import { kMinLengthSearch } from "components/search-field"
 import styles from "styles/search-dropdown/search-dropdown.module.css"
 
 export interface SearchResult {
@@ -14,12 +15,13 @@ export interface SearchResult {
 }
 
 interface SearchDropdownProps {
-  dictionary: Dictionary
+  componentDictionary: ComponentDictionary
+  constantDictionary: ConstantDictionary
   isOpen: boolean
   results?: SearchResult[]
   searchText?: string
-  onCharSelect?: (selectedCharId: string) => void
-  onCharDiscard?: (discardedCharId: string) => void
+  onCharSelect: (selectedCharId: number) => void
+  onCharDiscard: (discardedCharId: number) => void
 }
 
 // FIXME: Position dropdown in the center horizontally.
@@ -27,19 +29,35 @@ interface SearchDropdownProps {
 // FIXME: Grid is not responsive to window size.
 const SearchDropdown = forwardRef<HTMLDivElement, SearchDropdownProps>(
   function SearchDropdown(props, ref) {
+    const dictDropdown = props.componentDictionary.searchDropdown
+
+    const hasResults = props.results !== undefined
+    const hasValidSearchText =
+      props.searchText !== undefined &&
+      props.searchText.length >= kMinLengthSearch
+
     let atrClass = styles.searchDropdown
-    if (props.results === undefined) atrClass += ` ${styles.empty}`
+    if (!hasResults || !hasValidSearchText) atrClass += ` ${styles.empty}`
     if (!props.isOpen) atrClass += ` ${styles.hidden}`
 
+    // FIXME: This needs refactoring. What is returned when is not clear.
     let content: ReactNode
-    if (props.results === undefined) {
-      content = <p className={styles.noMatchText}>MISSING_NO_MATCH_TEXT</p>
+    if (!hasValidSearchText) {
+      content = (
+        <p className={styles.noMatchText}>
+          {dictDropdown.textMinInputLengthWarning}
+        </p>
+      )
+    } else if (!hasResults) {
+      content = <p className={styles.noMatchText}>{dictDropdown.textNoMatch}</p>
     } else {
-      content = props.results.map((res, index) => {
+      content = props.results!.map((res, index) => {
         return (
           <SelectableCharPreview
             key={`char_prev_${res.character.id}_${index}`}
-            id={res.character.id.toString()}
+            componentDictionary={props.componentDictionary}
+            constantDictionary={props.constantDictionary}
+            id={res.character.id}
             status={res.character.status}
             episodeCount={res.character.episode.length}
             imageUrl={res.character.image}
@@ -47,9 +65,8 @@ const SearchDropdown = forwardRef<HTMLDivElement, SearchDropdownProps>(
             onSelect={props.onCharSelect}
             onDiscard={props.onCharDiscard}
             index={index}
-            isSelectedByDefault={res.isSelected}
+            isSelected={res.isSelected}
             searchText={props.searchText}
-            dictionary={props.dictionary}
           />
         )
       })
