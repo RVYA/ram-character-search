@@ -18,6 +18,7 @@
     }
   },
   "searchDropdown": {
+    "textLoading": "Searching...",
     "textMinInputLengthWarning": "Type at least 3 characters.",
     "textNoMatch": "No results have been found."
   },

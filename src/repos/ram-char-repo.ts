@@ -12,6 +12,10 @@ const kResponseKeyError = "error"
 const kResponseKeyInfo = "info"
 const kResponseKeyResults = "results"
 
+/**
+ * Returns undefined when there is any errors.
+ * Otherwise returns the data received.
+ */
 async function parseAPIResponse(
   response: Response,
 ): Promise<[APIInfo, RickAndMortyCharacter[]] | undefined> {
@@ -40,6 +44,9 @@ function getAPIQueryURL(name: string, page?: number) {
   return queryURL
 }
 
+/**
+ * Returns the result of `parseAPIResponse`
+ */
 async function fetchCharacterWith(name: string, page?: number) {
   console.log("name: " + name + " page: " + page)
   const response = await fetch(getAPIQueryURL(name, page), {
@@ -49,12 +56,14 @@ async function fetchCharacterWith(name: string, page?: number) {
   return parseAPIResponse(response)
 }
 
+/**
+ * Returns an empty array when there are no results.
+ */
 export async function queryRaMCharactersWith(
   name: string,
-): Promise<RickAndMortyCharacter[] | undefined> {
-  //const [info, chars] = await fetchCharacterWith(name)
+): Promise<RickAndMortyCharacter[]> {
   const queryRes = await fetchCharacterWith(name)
-  if (queryRes === undefined) return undefined
+  if (queryRes === undefined) return []
 
   const [info, chars] = queryRes
   if (info.count <= 0) return []

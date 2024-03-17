@@ -90,8 +90,12 @@ export default function SearchField({
     debounceTimer.current = setTimeout(func, kDelayQueryDebounce)
   }, [])
 
-  const getSearchResults = useCallback(() => {
-    if (queryResults === undefined || queryResults.length <= 0) return undefined
+  const getSearchResults = useCallback((): SearchResult[] | undefined => {
+    if (queryResults === undefined) {
+      return undefined
+    } else if (queryResults.length <= 0) {
+      return []
+    }
 
     return queryResults.map<SearchResult>((char) => ({
       character: char,

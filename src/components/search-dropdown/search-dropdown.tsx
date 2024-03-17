@@ -31,7 +31,9 @@ const SearchDropdown = forwardRef<HTMLDivElement, SearchDropdownProps>(
   function SearchDropdown(props, ref) {
     const dictDropdown = props.componentDictionary.searchDropdown
 
-    const hasResults = props.results !== undefined
+    // Query algorithm returns undefined before fetching
+    const isQuerying = props.results === undefined
+    const hasResults = !isQuerying && props.results!.length > 0
     const hasValidSearchText =
       props.searchText !== undefined &&
       props.searchText.length >= kMinLengthSearch
@@ -48,6 +50,8 @@ const SearchDropdown = forwardRef<HTMLDivElement, SearchDropdownProps>(
           {dictDropdown.textMinInputLengthWarning}
         </p>
       )
+    } else if (isQuerying) {
+      content = <p className={styles.noMatchText}>{dictDropdown.textLoading}</p>
     } else if (!hasResults) {
       content = <p className={styles.noMatchText}>{dictDropdown.textNoMatch}</p>
     } else {

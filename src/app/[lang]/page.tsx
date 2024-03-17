@@ -27,10 +27,12 @@ export default function Home({ params }: HomeProps) {
 
   const [queryResults, setQueryResults] = useState<RickAndMortyCharacter[]>()
   const handleQueryChange = useCallback(async (query: string) => {
-    if (query.length < kMinLengthSearch) return setQueryResults([])
+    if (query.length < kMinLengthSearch) return setQueryResults(undefined)
 
+    setQueryResults(undefined)
     const results = await queryRaMCharactersWith(query)
-    setQueryResults(results?.sort((a, b) => a.name.localeCompare(b.name)))
+    if (results.length > 0) results.sort((a, b) => a.name.localeCompare(b.name))
+    setQueryResults(results)
   }, [])
 
   const [selectedChars, setSelectedChars] = useState<RickAndMortyCharacter[]>()
