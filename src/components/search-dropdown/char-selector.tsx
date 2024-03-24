@@ -8,7 +8,7 @@ interface CharSelectorProps {
   previewIndex?: number
   onChange: (event: ChangeEvent<HTMLInputElement>) => void
 }
-
+// FIXME: While unchecked, hover style doesn't work...
 export default function CharSelector({
   isSelectedByDefault,
   previewIndex,

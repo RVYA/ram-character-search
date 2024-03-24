@@ -4,6 +4,8 @@ import type { Metadata, ResolvingMetadata } from "next"
 
 import DictionaryContextWrapper from "contexts/dictionary-context-wrapper"
 import { getDictionary } from "dictionaries"
+
+import PatternBackground from "components/pattern-background"
 import { Locale, i18n } from "src/i18n-config"
 
 export function generateStaticParams() {
@@ -31,7 +33,10 @@ export default function RootLayout({ children, params }: RootProps) {
   return (
     <html lang={params.lang}>
       <DictionaryContextWrapper lang={params.lang}>
-        <body>{children}</body>
+        <body>
+          {children}
+          <PatternBackground />
+        </body>
       </DictionaryContextWrapper>
     </html>
   )
