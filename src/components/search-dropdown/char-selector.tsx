@@ -1,16 +1,20 @@
 import { ChangeEvent } from "react"
 
 import styles from "styles/search-dropdown/char-selector.module.scss"
-import { ThemedContainerType, getContainerThemeFor } from "utils/get-theme-for"
+import {
+  ThemedContainerType,
+  getContainerThemeFor,
+  getHoverThemeFor,
+} from "utils/get-theme-for"
 
 interface CharSelectorProps {
-  isSelectedByDefault: boolean
+  isSelected: boolean
   previewIndex?: number
   onChange: (event: ChangeEvent<HTMLInputElement>) => void
 }
-// FIXME: While unchecked, hover style doesn't work...
+
 export default function CharSelector({
-  isSelectedByDefault,
+  isSelected,
   previewIndex,
   onChange,
 }: CharSelectorProps) {
@@ -18,13 +22,14 @@ export default function CharSelector({
     ThemedContainerType.Outlined,
     previewIndex,
   )
-  const atrClass = `${styles.charSelector} ${contThemeClass}`
+  const hoverThemeClass = getHoverThemeFor(previewIndex)
+  const atrClass = `${styles.charSelector} ${contThemeClass} ${hoverThemeClass}`
 
   return (
     <input
       type="checkbox"
       className={atrClass}
-      defaultChecked={isSelectedByDefault}
+      checked={isSelected}
       onChange={onChange}
     />
   )

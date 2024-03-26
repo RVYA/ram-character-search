@@ -55,18 +55,30 @@ interface PatternCoordinate {
   y: number
 }
 
+export interface BackgroundDimensions {
+  width: number
+  height: number
+}
+
+interface PatternBackgroundProps {
+  canvasWidth?: number
+  canvasHeight?: number
+}
+
 const kHeightPattern = 100 //px
 const kWidthPattern = 80 //px
-const kGapPattern = 24 //px
-const kBufferCanvasSize = 16 //px May be redundant
+const kGapPattern = 24 //px Maybe redundant
+const kBufferCanvasSize = 16 //px
 
 const kProbabilityPattern = 85 / 100
 const kProbabilityPickleRick = 45 / 100 // To make it more uniform.
 
 const kDelayPatternGen = 15 //ms
 
-// TODO: Find how to preload images before component renders
-export default function PatternBackground() {
+export default function PatternBackground({
+  canvasWidth,
+  canvasHeight,
+}: PatternBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const [imgs, setImgs] = useState<PatternImages>()
 
@@ -167,23 +179,15 @@ export default function PatternBackground() {
   useEffect(() => generatePatterns(), [generatePatterns])
   // #endregion
 
-  // #region Resize event handling
-  const resizeCanvas = useCallback(() => {
-    if (canvasRef.current === null) return
-    canvasRef.current.width = window.innerWidth
-    canvasRef.current.height = window.innerHeight
-
-    // Resize clears the canvas, so it causes a redraw
-    generatePatterns()
-  }, [generatePatterns])
-
   useEffect(() => {
-    resizeCanvas()
+    if (canvasRef.current === null) return
 
-    window.addEventListener("resize", resizeCanvas)
-    return () => window.removeEventListener("resize", resizeCanvas)
-  }, [resizeCanvas])
-  // #endregion
+    canvasRef.current.width = canvasWidth ?? window.innerWidth
+    canvasRef.current.height =
+      canvasHeight ?? document.documentElement.scrollHeight
+
+    generatePatterns()
+  }, [canvasHeight, canvasWidth, generatePatterns])
 
   return <canvas className={styles.patternBackground} ref={canvasRef}></canvas>
 }

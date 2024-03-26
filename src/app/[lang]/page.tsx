@@ -1,9 +1,10 @@
 "use client"
 
-import { useCallback, useContext, useState } from "react"
+import { useCallback, useContext, useEffect, useState } from "react"
 
 import CharCardGrid from "components/char-card/char-card-grid"
 import CharChipContainer from "components/char-chip/char-chip-container"
+import PatternBackground from "components/pattern-background"
 import RickAndMortyLogo from "components/rick-and-morty-logo"
 import SearchField, { kMinLengthSearch } from "components/search-field"
 import SquigglyHR from "components/squiggly-hr"
@@ -16,12 +17,18 @@ import { queryRaMCharactersWith } from "repos/ram-char-repo"
 
 import { Locale } from "src/i18n-config"
 
+interface CanvasDimensions {
+  width: number
+  height: number
+}
+
 interface HomeProps {
   params: { lang: Locale }
 }
 
-// TODO: Can't pass functions from server component. Fix later.
-
+// FIXME: Canvas size doesn't return to initial size when there is no characters
+// selected.
+// FIXME: Body doesn't fill the document, only expands as high as elements go.
 export default function Home({ params }: HomeProps) {
   const [compDict] = useContext(DictionaryContext)!
 
@@ -34,6 +41,23 @@ export default function Home({ params }: HomeProps) {
     if (results.length > 0) results.sort((a, b) => a.name.localeCompare(b.name))
     setQueryResults(results)
   }, [])
+
+  const [canvasDims, setCanvasDims] = useState<CanvasDimensions>()
+  // #region Resize event handling
+  const resizeCanvas = useCallback(() => {
+    setCanvasDims({
+      width: window.innerWidth,
+      height: document.documentElement.scrollHeight,
+    })
+  }, [])
+
+  useEffect(() => {
+    resizeCanvas()
+
+    window.addEventListener("resize", resizeCanvas)
+    return () => window.removeEventListener("resize", resizeCanvas)
+  }, [resizeCanvas])
+  // #endregion
 
   const [selectedChars, setSelectedChars] = useState<RickAndMortyCharacter[]>()
   // #region Handle character selection/discard.
@@ -55,8 +79,9 @@ export default function Home({ params }: HomeProps) {
       newSelChars.sort((a, b) => a.name.localeCompare(b.name))
 
       setSelectedChars(newSelChars)
+      resizeCanvas()
     },
-    [queryResults, selectedChars],
+    [queryResults, resizeCanvas, selectedChars],
   )
 
   const handleCharDiscard = useCallback(
@@ -78,8 +103,9 @@ export default function Home({ params }: HomeProps) {
       newSlcChars.splice(charIndex, 1)
 
       setSelectedChars(newSlcChars)
+      resizeCanvas()
     },
-    [selectedChars],
+    [resizeCanvas, selectedChars],
   )
   // #endregion
 
@@ -88,7 +114,6 @@ export default function Home({ params }: HomeProps) {
     [selectedChars],
   )
 
-  // TODO: Define specific layout for when there is no selected characters.
   return (
     <>
       <RickAndMortyLogo />
@@ -106,6 +131,10 @@ export default function Home({ params }: HomeProps) {
         onCharDiscard={handleCharDiscard}
       />
       <CharCardGrid selectedCharacters={selectedChars} dictionary={compDict} />
+      <PatternBackground
+        canvasWidth={canvasDims?.width}
+        canvasHeight={canvasDims?.height}
+      />
     </>
   )
 }

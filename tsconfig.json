@@ -37,6 +37,9 @@
       "dictionaries": [
         "src/dictionaries"
       ],
+      "images/*": [
+        "/images/*"
+      ],
       "models/*": [
         "src/models/*"
       ],

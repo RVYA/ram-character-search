@@ -3,7 +3,7 @@ import { ChangeEvent, Fragment } from "react"
 import CharImg, { CharImgSize } from "components/char-img"
 import RaMThemedContainer, {
   RaMThemedContainerSize,
-} from "components/themed-container"
+} from "components/ram-themed-container"
 import CharSelector from "./char-selector"
 
 import { ComponentDictionary, ConstantDictionary } from "dictionaries"
@@ -124,7 +124,7 @@ export default function SelectableCharPreview({
     >
       <div className={atrClassPrvwCont}>
         <CharSelector
-          isSelectedByDefault={isSelected}
+          isSelected={isSelected}
           previewIndex={index}
           onChange={handleChange}
         />
