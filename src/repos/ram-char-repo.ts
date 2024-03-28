@@ -48,7 +48,6 @@ function getAPIQueryURL(name: string, page?: number) {
  * Returns the result of `parseAPIResponse`
  */
 async function fetchCharacterWith(name: string, page?: number) {
-  console.log("name: " + name + " page: " + page)
   const response = await fetch(getAPIQueryURL(name, page), {
     method: "GET",
     headers: { "Content-Type": "application/json" },

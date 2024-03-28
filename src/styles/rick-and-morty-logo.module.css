@@ -1,3 +1,5 @@
 svg.rickAndMortyLogo {
   height: var(--height-ram-logo);
+  /* top | right | bottom | left */
+  margin: 0 0 var(--space-x12) 0;
 }

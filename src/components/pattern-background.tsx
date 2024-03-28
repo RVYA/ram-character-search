@@ -183,8 +183,8 @@ export default function PatternBackground({
     if (canvasRef.current === null) return
 
     canvasRef.current.width = canvasWidth ?? window.innerWidth
-    canvasRef.current.height =
-      canvasHeight ?? document.documentElement.scrollHeight
+    canvasRef.current.height = canvasHeight ?? window.innerHeight
+    //canvasHeight ?? document.documentElement.scrollHeight
 
     generatePatterns()
   }, [canvasHeight, canvasWidth, generatePatterns])

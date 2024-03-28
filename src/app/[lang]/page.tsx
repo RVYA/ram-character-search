@@ -26,9 +26,8 @@ interface HomeProps {
   params: { lang: Locale }
 }
 
-// FIXME: Canvas size doesn't return to initial size when there is no characters
-// selected.
-// FIXME: Body doesn't fill the document, only expands as high as elements go.
+// FIXME: Canvas height still larger than html/body height when there is no
+// selected characters...
 export default function Home({ params }: HomeProps) {
   const [compDict] = useContext(DictionaryContext)!
 
@@ -42,14 +41,20 @@ export default function Home({ params }: HomeProps) {
     setQueryResults(results)
   }, [])
 
+  const [selectedChars, setSelectedChars] = useState<RickAndMortyCharacter[]>()
+
   const [canvasDims, setCanvasDims] = useState<CanvasDimensions>()
   // #region Resize event handling
   const resizeCanvas = useCallback(() => {
+    if (selectedChars === undefined || selectedChars.length <= 0) {
+      setCanvasDims(undefined)
+    }
+
     setCanvasDims({
       width: window.innerWidth,
       height: document.documentElement.scrollHeight,
     })
-  }, [])
+  }, [selectedChars])
 
   useEffect(() => {
     resizeCanvas()
@@ -59,7 +64,6 @@ export default function Home({ params }: HomeProps) {
   }, [resizeCanvas])
   // #endregion
 
-  const [selectedChars, setSelectedChars] = useState<RickAndMortyCharacter[]>()
   // #region Handle character selection/discard.
   const handleCharSelect = useCallback(
     (selectedCharId: number) => {
